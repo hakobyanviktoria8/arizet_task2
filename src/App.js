@@ -1,12 +1,11 @@
-import "./styles/App.css";
-import { Button } from "@mui/material";
+import { MainContent } from "./components/MainContent";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <Button variant="contained" color="primary">
-        Start
-      </Button>
+    <div className="app">
+      <MainContent />
+      <Footer />
     </div>
   );
 }
