@@ -1,16 +1,16 @@
 import { Link } from "@mui/material";
 import React from "react";
 
-export const LinkComp = ({ href = "", sx, text }) => {
+export const LinkComp = ({ link }) => {
   return (
     <Link
       target="_blank"
-      href={href}
+      href={link.href}
       underline="none"
-      variant="variant1Lg"
-      sx={sx}
+      variant="body1"
+      sx={link.sx}
     >
-      {text}
+      {link.text}
     </Link>
   );
 };

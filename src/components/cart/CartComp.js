@@ -9,7 +9,7 @@ const Container = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   width: "250px",
   textAlign: "center",
-  margin: "100px 40px 80px",
+  margin: "100px 40px 0",
 }));
 
 const CircleContainer = styled(Box)(({ theme }) => ({
@@ -29,7 +29,7 @@ export const CartComp = ({ Icon, text }) => {
       <CircleContainer>
         <Icon color="secondary" fontSize="large" />
       </CircleContainer>
-      <Typography variant="variant1Lg">{text}</Typography>
+      <Typography variant="body1">{text}</Typography>
     </Container>
   );
 };

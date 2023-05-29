@@ -1,12 +1,14 @@
 import { MainContent } from "./components/MainContent";
 import { Footer } from "./components/Footer";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 
 function App() {
   return (
-    <div className="app">
+    <ThemeProvider theme={theme}>
       <MainContent />
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
 

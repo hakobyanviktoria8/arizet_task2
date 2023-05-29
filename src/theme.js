@@ -12,23 +12,37 @@ const theme = createTheme({
       light: "#FFDC22",
     },
   },
+
   typography: {
-    variant1Lg: {
+    subtitle1: {
+      fontSize: "50px",
+      color: "#212B36",
+      fontWeight: "600",
+      lineHeight: "26px",
+    },
+    subtitle3: {
       fontSize: "18px",
       color: "#212B36",
+      fontWeight: "600",
+      lineHeight: "26px",
     },
-    variant2Lg: {
+    body1: {
+      fontSize: "18px",
+      color: "#212B36",
+      fontWeight: "400",
+      lineHeight: "26px",
+    },
+    body2: {
       fontSize: "16px",
       color: "#B2B3B5",
+      fontWeight: "400",
+      lineHeight: "24px",
     },
-    variant3Lg: {
+    body3: {
       fontSize: "14px",
       color: "#B2B3B5",
-    },
-    textSize: {
-      big: "18px",
-      medium: "16px",
-      small: "14px",
+      fontWeight: "400",
+      lineHeight: "26px",
     },
   },
 });

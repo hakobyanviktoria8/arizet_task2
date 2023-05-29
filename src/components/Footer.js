@@ -1,11 +1,12 @@
 import React from "react";
-import logoImage from "./../images/logo.png";
-import { Box, Link, Divider, Typography, Container } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { linksData } from "../dataUiPart.js/linksData";
+import { LinkComp } from "./link/LinkComp";
+import { Logo } from "./common/Logo";
 
 export const Footer = () => {
   return (
-    <Container
+    <Box
       component="footer"
       sx={{
         width: "100%",
@@ -17,31 +18,18 @@ export const Footer = () => {
         pb: "28px",
       }}
     >
-      <img
-        src={logoImage}
-        alt="Logo"
-        style={{ width: "250px", marginBottom: "32px" }}
-      />
+      <Logo sx={{ width: "250px", margin: "auto", mb: "32px" }} />
 
       <Box>
         {linksData?.map((link) => (
-          <Link
-            key={link.id}
-            target="_blank"
-            href={link.href}
-            underline="none"
-            variant="variant1Lg"
-            sx={link.sx}
-          >
-            {link.text}
-          </Link>
+          <LinkComp key={link.id} link={link} />
         ))}
       </Box>
 
       <Divider sx={{ mb: 3, mt: 5, width: "100%" }} />
-      <Typography variant="variant3Lg">
+      <Typography variant="body3">
         &copy; 2023 Intim Florts | All Rights Reserved.
       </Typography>
-    </Container>
+    </Box>
   );
 };
