@@ -1,25 +1,34 @@
 import React from "react";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography, styled } from "@mui/material";
 import { linksData } from "../dataUiPart.js/linksData";
 import { LinkComp } from "./link/LinkComp";
 import { Logo } from "./common/Logo";
 
+const FooterBox = styled(Box)(({ theme }) => ({
+  fontSize: "14px",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "40px 0 28px",
+
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "18px",
+  },
+}));
+
 export const Footer = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        pt: "40px",
-        pb: "28px",
-      }}
-    >
-      <Logo sx={{ width: "250px", margin: "auto", mb: "32px" }} />
-
+    <FooterBox component="footer">
+      <Logo
+        sx={{
+          margin: "auto",
+          mb: "32px",
+          width: { xs: "200px", sm: "250px" },
+          objectFit: "contain",
+        }}
+      />
       <Box>
         {linksData?.map((link) => (
           <LinkComp key={link.id} link={link} />
@@ -30,6 +39,6 @@ export const Footer = () => {
       <Typography variant="body3">
         &copy; 2023 Intim Florts | All Rights Reserved.
       </Typography>
-    </Box>
+    </FooterBox>
   );
 };

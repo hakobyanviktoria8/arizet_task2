@@ -4,3 +4,7 @@
   box-sizing: border-box;
   font-family: "Public Sans";
 }
+
+.logo > img {
+  object-fit: contain !important;
+}

@@ -1,13 +1,13 @@
 import { Link } from "@mui/material";
 import React from "react";
 
-export const LinkComp = ({ link }) => {
+export const LinkComp = ({ link, variant }) => {
   return (
     <Link
       target="_blank"
       href={link.href}
       underline="none"
-      variant="body1"
+      variant={{ xs: "body3", sm: "body1" }}
       sx={link.sx}
     >
       {link.text}

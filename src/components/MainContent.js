@@ -1,26 +1,31 @@
 import React from "react";
 import backgroundImage from "./../images/bg-main.png";
-import { Container } from "@mui/material";
+import { styled, Box } from "@mui/material";
 import { CartsWrapper } from "./cart/CartsWrapper";
-import Checkout from "./form/Checkout";
 
-const myStyles = {
-  background: "#E5E8EB",
+const MainContentBox = styled(Box)(({ theme }) => ({
+  background: "#F5F5F5",
   backgroundImage: `url(${backgroundImage})`,
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
   width: "100%",
   minHeight: "50vh",
-  padding: "60px 60px 80px",
+  padding: "16px",
   maxWidth: "100%",
-};
+
+  [theme.breakpoints.up("sm")]: {
+    padding: "60px",
+    marginTop: "100px",
+    justifyContent: "space-between",
+  },
+}));
 
 export const MainContent = () => {
   return (
-    <Container maxWidth="sm" component="main" style={myStyles} className="bd">
-      <Checkout />
+    <MainContentBox component="main">
+      {/* <Checkout /> */}
       <CartsWrapper />
-    </Container>
+    </MainContentBox>
   );
 };
