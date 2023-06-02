@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
 
-const Search = styled("div")(() => ({
+const SearchBox = styled(Box)(() => ({
   position: "relative",
   borderRadius: "16px",
   width: "100%",
@@ -14,10 +14,9 @@ const Search = styled("div")(() => ({
   alignItems: "center",
   padding: "0 24px",
   height: "48px",
-  marginTop: "16px",
 }));
 
-const LocationBox = styled("div")(() => ({
+const LocationBox = styled(Box)(() => ({
   position: "absolute",
   background: "white",
   width: "100%",
@@ -78,26 +77,36 @@ export const Location = ({ handleFormChange }) => {
 
   return (
     <Box sx={{ position: "relative" }}>
-      <Typography variant="subtitle3">Your location</Typography>
-      <Typography variant="body2">
+      <Typography variant="subtitle3" marginBottom={1} component="h2">
+        Your location
+      </Typography>
+      <Typography variant="body2" marginBottom={2}>
         Search location by city, country or zip code
       </Typography>
 
-      <Search>
+      <SearchBox>
         <InputBase
           placeholder="London, UK"
           inputProps={{ "aria-label": "search" }}
           onChange={handleSearchChange}
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", fontSize: "16px" }}
           value={searchVal}
         />
-        <SearchIcon />
-      </Search>
+
+        <SearchIcon sx={{ color: "secondary.main", fontSize: "22px" }} />
+      </SearchBox>
 
       {locations.length > 0 && bool && (
         <LocationBox>
           {locations.map((item) => (
-            <MenuItem key={item} onClick={() => handleLocationSelect(item)}>
+            <MenuItem
+              sx={{
+                fontSize: "16px",
+                lineHeight: "20px",
+              }}
+              key={item}
+              onClick={() => handleLocationSelect(item)}
+            >
               {item}
             </MenuItem>
           ))}

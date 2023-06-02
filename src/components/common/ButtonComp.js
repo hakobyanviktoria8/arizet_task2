@@ -12,6 +12,7 @@ export const ButtonComp = ({ text, disabled = false, sx, onClick = null }) => {
         width: "100%",
         fontSize: "18px",
         borderRadius: "16px",
+        textTransform: "none",
       }}
     >
       {text}
