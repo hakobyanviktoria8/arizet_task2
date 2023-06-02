@@ -6,9 +6,33 @@ import { Logo } from "../common/Logo";
 import { HaveAccount } from "./HaveAccount";
 import { ButtonComp } from "../common/ButtonComp";
 import { StepperComp } from "./StepperComp";
-import { getStepContent } from "../../helpers/getStepContent";
+import { Age } from "./Age";
+import { Gender } from "./Gender";
+import { Email } from "./Email";
+import { Location } from "./Location";
+import { Password } from "./Password";
+import { Username } from "./Username";
 
 const steps = 6;
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return <Gender />;
+    case 1:
+      return <Age />;
+    case 2:
+      return <Location />;
+    case 3:
+      return <Username />;
+    case 4:
+      return <Password />;
+    case 5:
+      return <Email />;
+    default:
+      throw new Error("Unknown step");
+  }
+}
 
 const FormCompBox = styled(Box)(({ theme }) => ({}));
 
@@ -62,12 +86,11 @@ export const FormComp = () => {
 
             <Box>
               <ButtonComp
-                text={activeStep === steps ? "Complete" : "Next"}
+                text={activeStep === steps - 1 ? "Complete" : "Next"}
                 sx={{
                   mt: 3,
                   mb: 2,
                   background: "#F76448",
-                  borderRadius: "16px",
                   color: "#FFFFFF",
                 }}
                 onClick={handleNext}

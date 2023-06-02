@@ -19,7 +19,7 @@ export const StepperComp = ({ active }) => {
   console.log(active, `${widthStep}px`);
 
   return (
-    <Box>
+    <Box marginBottom={5}>
       <Box>
         <WcOutlinedIcon />
         <CakeOutlinedIcon />

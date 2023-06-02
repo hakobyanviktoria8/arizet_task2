@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { ButtonComp } from "../common/ButtonComp";
 
 export const Gender = ({ handleFormChange }) => {
   const [gender, setGender] = useState("");
@@ -32,43 +33,57 @@ export const Gender = ({ handleFormChange }) => {
   return (
     <Box>
       <Box>
-        <Typography variant="subtitle3">Your gender</Typography>
+        <Typography variant="subtitle3" marginBottom={2} component="h2">
+          Your gender
+        </Typography>
 
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Button
-            variant="outlined"
-            size="large"
+          <ButtonComp
+            sx={{
+              border: "1px solid #B2B3B5",
+              color: "primary.light",
+              marginBottom: "16px",
+            }}
             onClick={() => setGender("Female")}
-          >
-            Female
-          </Button>
-          <Button
-            variant="outlined"
-            size="medium"
+            text="Female"
+          />
+
+          <ButtonComp
+            sx={{
+              border: "1px solid #F76448",
+              color: "secondary.main",
+              marginBottom: "16px",
+            }}
             onClick={() => setGender("Male")}
-          >
-            Male
-          </Button>
+            text="Male"
+          />
         </Box>
       </Box>
       <Box>
-        <Typography variant="subtitle3">You are interested in</Typography>
+        <Typography variant="subtitle3" marginBottom={2} component="h2" mt={3}>
+          You are interested in
+        </Typography>
 
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Button
-            variant="outlined"
-            size="large"
+          <ButtonComp
+            sx={{
+              border: "1px solid #B2B3B5",
+              color: "primary.light",
+              marginBottom: "16px",
+            }}
             onClick={() => setLooking("Female")}
-          >
-            Female
-          </Button>
-          <Button
-            variant="outlined"
-            size="medium"
+            text="Female"
+          />
+
+          <ButtonComp
+            sx={{
+              border: "1px solid #B2B3B5",
+              color: "primary.light",
+              marginBottom: "16px",
+            }}
             onClick={() => setLooking("Male")}
-          >
-            Male
-          </Button>
+            text="Mail"
+          />
         </Box>
       </Box>
     </Box>

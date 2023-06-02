@@ -4,7 +4,7 @@ import React from "react";
 export const HaveAccount = () => {
   return (
     <>
-      <Divider sx={{ mb: 3, width: "100%" }} />
+      <Divider sx={{ mb: 3, mt: 3, width: "100%" }} />
       <Typography
         variant={{ xs: "body2", sm: "body1" }}
         color="text.secondary"

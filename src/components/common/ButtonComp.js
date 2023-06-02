@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-export const ButtonComp = ({ text, disabled, sx, onClick }) => {
+export const ButtonComp = ({ text, disabled = false, sx, onClick = null }) => {
   return (
     <Button
       onClick={onClick}
@@ -11,6 +11,7 @@ export const ButtonComp = ({ text, disabled, sx, onClick }) => {
         height: "48px",
         width: "100%",
         fontSize: "18px",
+        borderRadius: "16px",
       }}
     >
       {text}
