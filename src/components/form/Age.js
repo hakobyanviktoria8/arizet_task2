@@ -1,87 +1,73 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  Select,
-  Typography,
-} from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 import { generateOptions, generateYearOptions } from "../../helpers/DateUtils";
+import { FormControlComp } from "./FormControlComp";
+
+const AgeDataBox = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.up("sm")]: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+}));
 
 export const Age = ({ handleFormChange }) => {
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [ageData, setAgeData] = useState({ day: "", month: "", year: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "day") {
-      setDay(value);
-    } else if (name === "month") {
-      setMonth(value);
-    } else if (name === "year") {
-      setYear(value);
-    }
+    setAgeData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   useEffect(() => {
+    const { day, month, year } = ageData;
     if (day && month && year) {
       const formattedDob = `${year}-${month}-${day}`;
       handleFormChange("DOB", formattedDob);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [day, month, year]);
+  }, [ageData]);
 
   return (
     <Box>
-      <Typography variant="subtitle3">Your age</Typography>
-      <Typography variant="body2">
+      <Typography variant="subtitle3" marginBottom={1} component="h2">
+        Your age
+      </Typography>
+      <Typography variant="body2" marginBottom={2}>
         You must be at least 18 years old to use Intim Flort
       </Typography>
 
-      <Box sx={{ display: "flex" }}>
-        <FormControl fullWidth>
-          <InputLabel id="day-label">Day</InputLabel>
-          <Select
-            labelId="day-label"
-            id="day-select"
-            name="day"
-            value={day}
-            label="Day"
-            onChange={handleChange}
-          >
-            {generateOptions(31)}
-          </Select>
-        </FormControl>
-
-        <FormControl fullWidth>
-          <InputLabel id="month-label">Month</InputLabel>
-          <Select
-            labelId="month-label"
-            id="month-select"
-            name="month"
-            value={month}
-            label="Month"
-            onChange={handleChange}
-          >
-            {generateOptions(12)}
-          </Select>
-        </FormControl>
-
-        <FormControl fullWidth>
-          <InputLabel id="year-label">Year</InputLabel>
-          <Select
-            labelId="year-label"
-            id="year-select"
-            name="year"
-            value={year}
-            label="Year"
-            onChange={handleChange}
-          >
-            {generateYearOptions()}
-          </Select>
-        </FormControl>
-      </Box>
+      <AgeDataBox>
+        <FormControlComp
+          value={ageData.day}
+          handleChange={handleChange}
+          label="Day"
+          name="day"
+          getOption={generateOptions(31)}
+          labelId="day-label"
+          id="day-select"
+        />
+        <FormControlComp
+          value={ageData.month}
+          handleChange={handleChange}
+          label="Month"
+          name="month"
+          getOption={generateOptions(12)}
+          labelId="month-label"
+          id="month-select"
+        />
+        <FormControlComp
+          value={ageData.year}
+          handleChange={handleChange}
+          label="Year"
+          name="year"
+          getOption={generateYearOptions()}
+          labelId="year-label"
+          id="year-select"
+        />
+      </AgeDataBox>
     </Box>
   );
 };

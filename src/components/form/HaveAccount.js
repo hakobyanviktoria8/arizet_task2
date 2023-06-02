@@ -12,7 +12,7 @@ export const HaveAccount = () => {
         display="block"
       >
         Already have an account?
-        <Link color="secondary.main" href="/" textDecoration="none">
+        <Link color="secondary.main" href="/" sx={{ textDecoration: "none" }}>
           {" "}
           Log In
         </Link>

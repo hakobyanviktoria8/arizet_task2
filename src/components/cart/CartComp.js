@@ -20,19 +20,14 @@ const CartBox = styled(Box)(({ theme }) => ({
 }));
 
 const CircleContainer = styled(Box)(({ theme }) => ({
-  width: "52px",
-  height: "52px",
+  width: "64px",
+  height: "64px",
   background: "white",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   borderRadius: "50%",
   marginBottom: "24px",
-
-  [theme.breakpoints.up("sm")]: {
-    width: "64px",
-    height: "64px",
-  },
 }));
 
 export const CartComp = ({ Icon, text }) => {

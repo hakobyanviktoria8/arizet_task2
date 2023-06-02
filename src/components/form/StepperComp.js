@@ -16,7 +16,6 @@ const RangeBox = styled(Box)(({ theme }) => ({
 
 export const StepperComp = ({ active }) => {
   const widthStep = 5 + (active * 100) / 6;
-  console.log(active, `${widthStep}px`);
 
   return (
     <Box marginBottom={5}>

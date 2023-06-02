@@ -8,3 +8,15 @@
 .logo > img {
   object-fit: contain !important;
 }
+
+.formControlBox fieldset {
+  border: none;
+}
+
+.formControlBox label {
+  background: white;
+}
+
+.formControlBox .MuiSelect-select {
+  padding: 10px;
+}
