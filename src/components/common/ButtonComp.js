@@ -1,23 +1,19 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-export const ButtonComp = ({
-  children,
-  disabled,
-  size,
-  variant,
-  sx,
-  color,
-}) => {
+export const ButtonComp = ({ text, disabled, sx, onClick }) => {
   return (
     <Button
-      color={color}
+      onClick={onClick}
       disabled={disabled}
-      size={size}
-      variant={variant}
-      sx={sx}
+      sx={{
+        ...sx,
+        height: "48px",
+        width: "100%",
+        fontSize: "18px",
+      }}
     >
-      {children}
+      {text}
     </Button>
   );
 };

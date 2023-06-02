@@ -7,12 +7,12 @@ const CartsWrapperBox = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   marginTop: "48px",
-  marginBottom: "18px",
+  // marginBottom: "18px",
 
   [theme.breakpoints.up("sm")]: {
     marginBottom: "0",
   },
-  
+
   [theme.breakpoints.up("lg")]: {
     marginTop: "100px",
   },

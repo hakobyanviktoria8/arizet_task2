@@ -21,14 +21,7 @@ const FooterBox = styled(Box)(({ theme }) => ({
 export const Footer = () => {
   return (
     <FooterBox component="footer">
-      <Logo
-        sx={{
-          margin: "auto",
-          mb: "32px",
-          width: { xs: "200px", sm: "250px" },
-          objectFit: "contain",
-        }}
-      />
+      <Logo />
       <Box>
         {linksData?.map((link) => (
           <LinkComp key={link.id} link={link} />

@@ -19,13 +19,16 @@ export const Gender = ({ handleFormChange }) => {
   };
 
   useEffect(() => {
-    handleFormChange("gender", gender);
+    if (gender !== "") {
+      handleFormChange("gender", gender);
+    }
     handleLookingFor();
-    handleFormChange("looking_for", lookingFor);
+    if (lookingFor !== "") {
+      handleFormChange("looking_for", lookingFor);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gender, looking, lookingFor]);
 
-  console.log({ gender, looking, lookingFor });
   return (
     <Box>
       <Box>

@@ -33,30 +33,48 @@ export const Location = ({ handleFormChange }) => {
   const [locations, setLocations] = useState([]);
   const apiUrl = process.env.REACT_APP_API_URL;
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchVal(value);
+    setLocation("");
+    setBool(false);
+  };
+
+  const handleLocationSelect = (item) => {
+    setLocation(item);
+    setSearchVal(item);
+  };
+
   useEffect(() => {
-    if (searchVal !== "") {
-      if (location === "") {
-        setBool(true);
-      } else {
-        handleFormChange("location", location);
-        setBool(false);
-      }
-      axios
-        .get(`${apiUrl}/locations`, {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}/locations`, {
           params: {
             search: searchVal,
             skip: 0,
             limit: 10,
             site_key: "no01",
           },
-        })
-        .then((response) => {
-          setLocations(response?.data?.Data);
-        })
-        .catch((error) => console.log(error));
+        });
+
+        setLocations(response?.data?.Data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (searchVal !== "") {
+      fetchData();
+      if (location === "") {
+        setBool(true);
+      } else {
+        handleFormChange("location", location);
+        setBool(false);
+      }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchVal, location]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchVal, apiUrl]);
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -69,27 +87,17 @@ export const Location = ({ handleFormChange }) => {
         <InputBase
           placeholder="London, UK"
           inputProps={{ "aria-label": "search" }}
-          onChange={(e) => {
-            setSearchVal(e.target.value);
-            setLocation("");
-            setBool(false);
-          }}
+          onChange={handleSearchChange}
           sx={{ width: "100%" }}
           value={searchVal}
         />
         <SearchIcon />
       </Search>
 
-      {bool && (
+      {locations.length > 0 && bool && (
         <LocationBox>
-          {locations?.map((item) => (
-            <MenuItem
-              key={item}
-              onClick={() => {
-                setLocation(item);
-                setSearchVal(item);
-              }}
-            >
+          {locations.map((item) => (
+            <MenuItem key={item} onClick={() => handleLocationSelect(item)}>
               {item}
             </MenuItem>
           ))}
