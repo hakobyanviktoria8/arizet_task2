@@ -41,9 +41,10 @@ export const FormComp = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({});
   const [disable, setDisable] = useState(true);
-  // const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const apiUrl = process.env.REACT_APP_API_URL;
+  const storedUid = localStorage.getItem("uid");
 
   const fetchData = async () => {
     try {
@@ -56,23 +57,43 @@ export const FormComp = () => {
           },
         }
       );
-      console.log(111111111111, response?.data?.Data, response);
+      if (response?.data.Status === "ok") {
+        setStatus(response?.data.Status);
+        setErrorMessage("");
+        localStorage.setItem("uid", response?.data.Data);
+        setActiveStep(activeStep + 1);
+      }
     } catch (error) {
-      await setErrorMessage(error?.response?.data?.Error?.message);
-      console.log(11111111222, error?.response?.data?.Error?.message);
+      if (error?.response?.data.Status === "fail") {
+        setStatus(error?.response?.data.Status);
+        setErrorMessage(error?.response?.data?.Error?.message);
+        localStorage.removeItem("uid");
+      }
+    }
+  };
+
+  const fetchCompleteData = async () => {
+    try {
+      const response = await axios.post(`${apiUrl}/start/${storedUid}`, {
+        Data: formData,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const handleNext = () => {
     if (activeStep === 3) {
       fetchData();
-      console.log(555555555, errorMessage);
+    } else {
+      setActiveStep(activeStep + 1);
     }
-    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+    setErrorMessage("");
   };
 
   function getStepContent(step) {
@@ -102,7 +123,6 @@ export const FormComp = () => {
   };
 
   useEffect(() => {
-    console.log(100000000000, formData, activeStep);
     switch (activeStep) {
       case 0: {
         setDisable(!formData.gender || !formData.looking_for);
@@ -125,7 +145,7 @@ export const FormComp = () => {
         return;
       }
       case 5: {
-        setDisable(!formData.email);
+        setDisable(!formData.email || !formData.checkboxes);
         return;
       }
       default:
@@ -135,37 +155,11 @@ export const FormComp = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep, handleFormChange]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const request = await axios.post(
-  //         `${apiUrl}/`,
-  //         {
-  //           username: "razd24",
-  //         },
-  //         {
-  //           params: {
-  //             site_key: "no01",
-  //           },
-  //         }
-  //       );
-  //       console.log("111111111111aa", request);
-  //     } catch (error) {
-  //       console.log("11111111222aa", error);
-  //     }
-  //   };
-
-  //   // console.log(123123, formData);
-  //   if (formData.email !== "" && formData.password !== "") {
-  //     // fetchData();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  const handleLogData = () => {
-    //18.196.7.44/api/v2/registration/61125373642b0b61c30bc492?site_key=no01
-
-    console.log("Form data:", formData);
+  const handleCompleteData = () => {
+    console.log("Form data:__________", formData, errorMessage, status);
+    if (!errorMessage && status === "ok") {
+      fetchCompleteData();
+    }
   };
 
   return (
@@ -186,12 +180,20 @@ export const FormComp = () => {
           <>
             {getStepContent(activeStep)}
 
+            {errorMessage && (
+              <Typography
+                sx={{ fontSize: "14px", marginTop: "16px", color: "red" }}
+              >
+                {errorMessage}
+              </Typography>
+            )}
+
             <Box>
               {activeStep === steps - 1 ? (
                 <ButtonComp
-                  onClick={handleLogData}
+                  onClick={handleCompleteData}
                   text="Complete"
-                  // disabled={true}
+                  disabled={disable}
                   sx={{
                     mt: 3,
                     mb: 2,

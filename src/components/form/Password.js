@@ -19,7 +19,7 @@ export const Password = ({ handleFormChange }) => {
       handleFormChange("password", password);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [password]);
 
   return (
     <Box className="userBox">

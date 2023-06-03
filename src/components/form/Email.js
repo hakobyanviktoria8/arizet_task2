@@ -16,6 +16,10 @@ export const Email = ({ handleFormChange }) => {
     read: false,
   });
 
+  const handleChange = (e) => {
+    setEmail(e.target.value);
+  };
+
   const handleCheckboxChange = (name) => (e) => {
     setCheckboxes((prevState) => ({
       ...prevState,
@@ -26,9 +30,10 @@ export const Email = ({ handleFormChange }) => {
   useEffect(() => {
     if (email !== "" && checkboxes.years && checkboxes.read) {
       handleFormChange("email", email);
+      handleFormChange("checkboxes", checkboxes.years && checkboxes.read);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkboxes]);
+  }, [email]);
 
   return (
     <Box className="userBox">
@@ -37,7 +42,7 @@ export const Email = ({ handleFormChange }) => {
       </Typography>
       <Input
         value={email}
-        handleChange={(e) => setEmail(e.target.value)}
+        handleChange={handleChange}
         placeholder="Email"
         type="email"
       />
