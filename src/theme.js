@@ -10,6 +10,7 @@ const theme = createTheme({
     secondary: {
       main: "#F76448",
       light: "#FFDC22",
+      contrastText: "#2EC876",
     },
   },
 
@@ -41,6 +42,12 @@ const theme = createTheme({
     body3: {
       fontSize: "14px",
       color: "#B2B3B5",
+      fontWeight: "400",
+      lineHeight: "26px",
+    },
+    body4: {
+      fontSize: "14px",
+      color: "#212B36",
       fontWeight: "400",
       lineHeight: "26px",
     },

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Paper, Button, styled } from "@mui/material";
+import { Paper, styled } from "@mui/material";
 import { Logo } from "../common/Logo";
 import { HaveAccount } from "./HaveAccount";
 import { ButtonComp } from "../common/ButtonComp";
@@ -41,9 +41,33 @@ export const FormComp = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({});
   const [disable, setDisable] = useState(true);
+  // const [status, setStatus] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const apiUrl = process.env.REACT_APP_API_URL;
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/start`,
+        { username: formData.username },
+        {
+          params: {
+            site_key: "no01",
+          },
+        }
+      );
+      console.log(111111111111, response?.data?.Data, response);
+    } catch (error) {
+      await setErrorMessage(error?.response?.data?.Error?.message);
+      console.log(11111111222, error?.response?.data?.Error?.message);
+    }
+  };
+
   const handleNext = () => {
+    if (activeStep === 3) {
+      fetchData();
+      console.log(555555555, errorMessage);
+    }
     setActiveStep(activeStep + 1);
   };
 
@@ -108,7 +132,7 @@ export const FormComp = () => {
         setDisable(true);
         return;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep, handleFormChange]);
 
   // useEffect(() => {

@@ -4,42 +4,85 @@ import {
   Checkbox,
   FormControlLabel,
   FormGroup,
-  TextField,
   Typography,
+  Link,
 } from "@mui/material";
+import { Input } from "../common/Input";
 
 export const Email = ({ handleFormChange }) => {
   const [email, setEmail] = useState("");
+  const [checkboxes, setCheckboxes] = useState({
+    years: false,
+    read: false,
+  });
+
+  const handleCheckboxChange = (name) => (e) => {
+    setCheckboxes((prevState) => ({
+      ...prevState,
+      [name]: e.target.checked,
+    }));
+  };
 
   useEffect(() => {
-    if (email !== "") {
-      handleFormChange("password", email);
+    if (email !== "" && checkboxes.years && checkboxes.read) {
+      handleFormChange("email", email);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
+  }, [checkboxes]);
 
   return (
-    <Box>
-      <Typography variant="subtitle3">Add email address</Typography>
-      <TextField
-        variant="outlined"
+    <Box className="userBox">
+      <Typography variant="subtitle3" marginBottom={2} component="h2">
+        Add email address
+      </Typography>
+      <Input
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        handleChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
-        type="text"
+        type="email"
       />
 
-      <FormGroup>
+      <FormGroup sx={{ marginTop: "16px" }}>
         <FormControlLabel
-          control={<Checkbox />}
-          label={<Typography variant="body3">18 years old</Typography>}
+          control={
+            <Checkbox
+              checked={checkboxes.years}
+              onChange={handleCheckboxChange("years")}
+              sx={{
+                "&.Mui-checked": {
+                  color: "secondary.contrastText",
+                },
+              }}
+            />
+          }
+          label={<Typography variant="body4">18 years old</Typography>}
         />
         <FormControlLabel
-          control={<Checkbox />}
+          control={
+            <Checkbox
+              checked={checkboxes.read}
+              onChange={handleCheckboxChange("read")}
+              sx={{
+                "&.Mui-checked": {
+                  color: "secondary.contrastText",
+                },
+              }}
+            />
+          }
           label={
-            <Typography variant="body3">
-              I have read and accept the Terms of Service and our Privacy
-              Statement.
+            <Typography variant="body4">
+              I have read and accept the{" "}
+              <Link
+                sx={{ color: "secondary.contrastText", textDecoration: "none" }}
+              >
+                Terms of Service
+              </Link>{" "}
+              and our{" "}
+              <Link
+                sx={{ color: "secondary.contrastText", textDecoration: "none" }}
+              >
+                Privacy Statement.
+              </Link>
             </Typography>
           }
         />

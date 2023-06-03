@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { Input } from "../common/Input";
 
 export const Password = ({ handleFormChange }) => {
   const [password, setPassword] = useState("");
 
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const regex = /^[a-zA-Z0-9_]{0,16}$/;
+
+    if (regex.test(value)) {
+      setPassword(value);
+    }
+  };
+
   useEffect(() => {
-    if (password !== "") {
+    if (password !== "" && password.length > 5) {
       handleFormChange("password", password);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [password]);
+  }, []);
 
   return (
-    <Box>
-      <Typography variant="subtitle3">Create a password</Typography>
-      <TextField
-        variant="outlined"
+    <Box className="userBox">
+      <Typography variant="subtitle3" marginBottom={2} component="h2">
+        Create a password
+      </Typography>
+
+      <Input
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        handleChange={handleChange}
         placeholder="Password"
         type="password"
-        // autoComplete="current-password"
       />
     </Box>
   );

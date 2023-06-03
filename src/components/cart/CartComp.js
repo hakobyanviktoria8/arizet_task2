@@ -36,7 +36,19 @@ export const CartComp = ({ Icon, text }) => {
       <CircleContainer>
         <Icon color="secondary" fontSize="large" />
       </CircleContainer>
-      <Typography variant={{ xs: "body3", sm: "body1" }}>{text}</Typography>
+      <Typography
+        sx={{
+          fontSize: {
+            xs: "14px",
+            sm: "18px",
+          },
+          color: "primary.main",
+          fontWeight: "400",
+          lineHeight: "26px",
+        }}
+      >
+        {text}
+      </Typography>
     </CartBox>
   );
 };

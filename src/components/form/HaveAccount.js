@@ -6,8 +6,15 @@ export const HaveAccount = () => {
     <>
       <Divider sx={{ mb: 3, mt: 3, width: "100%" }} />
       <Typography
-        variant={{ xs: "body2", sm: "body1" }}
-        color="text.secondary"
+        sx={{
+          fontSize: {
+            xs: "16px",
+            sm: "18px",
+          },
+          color: "primary.main",
+          fontWeight: "400",
+          lineHeight: "26px",
+        }}
         textAlign="center"
         display="block"
       >

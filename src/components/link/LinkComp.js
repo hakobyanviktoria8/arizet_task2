@@ -7,8 +7,16 @@ export const LinkComp = ({ link }) => {
       target="_blank"
       href={link.href}
       underline="none"
-      variant={{ xs: "body3", sm: "body1" }}
-      sx={link.sx}
+      sx={{
+        ...link.sx,
+        fontSize: {
+          xs: "14px",
+          sm: "18px",
+        },
+        color: "primary.main",
+        fontWeight: "400",
+        lineHeight: "26px",
+      }}
     >
       {link.text}
     </Link>

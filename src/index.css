@@ -9,7 +9,8 @@
   object-fit: contain !important;
 }
 
-.formControlBox fieldset {
+.formControlBox fieldset,
+.userBox fieldset {
   border: none;
 }
 
@@ -17,6 +18,7 @@
   background: white;
 }
 
-.formControlBox .MuiSelect-select {
+.formControlBox .MuiSelect-select,
+.inputBox input {
   padding: 10px;
 }
