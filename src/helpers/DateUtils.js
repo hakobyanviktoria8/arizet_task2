@@ -15,9 +15,9 @@ export const generateOptions = (num) => {
 
 export const generateYearOptions = () => {
   const currentYear = new Date().getFullYear();
-  const startYear = currentYear - 100;
+  const startYear = currentYear - 80;
   const options = [];
-  for (let year = currentYear; year >= startYear; year--) {
+  for (let year = currentYear - 18; year >= startYear; year--) {
     options.push(
       <MenuItem key={year} value={year}>
         {year}

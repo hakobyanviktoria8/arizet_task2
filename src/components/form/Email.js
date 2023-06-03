@@ -33,7 +33,7 @@ export const Email = ({ handleFormChange }) => {
       handleFormChange("checkboxes", checkboxes.years && checkboxes.read);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
+  }, [email, checkboxes]);
 
   return (
     <Box className="userBox">

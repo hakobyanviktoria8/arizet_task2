@@ -16,8 +16,6 @@ import axios from "axios";
 
 const steps = 6;
 
-const FormCompBox = styled(Box)(({ theme }) => ({}));
-
 const FormCompPaper = styled(Paper)(({ theme }) => ({
   width: "340px",
   borderRadius: "12px",
@@ -90,9 +88,16 @@ export const FormComp = () => {
           },
         }
       );
-      console.log(response);
+      if (response?.data.Status === "ok") {
+        setStatus(response?.data.Status);
+        setErrorMessage("");
+        setActiveStep(activeStep + 1);
+      }
     } catch (error) {
-      console.log(error);
+      if (error?.response?.data.Status === "fail") {
+        setStatus(error?.response?.data.Status);
+        setErrorMessage(error?.response?.data?.Error?.message);
+      }
     }
   };
 
@@ -169,28 +174,29 @@ export const FormComp = () => {
   }, [activeStep, handleFormChange]);
 
   const handleCompleteData = () => {
-    console.log("Form data:__________", formData, errorMessage, status);
-    if (!errorMessage && status === "ok") {
+    if (!errorMessage && status === "ok" && activeStep === 5) {
       fetchCompleteData();
     }
   };
 
   return (
-    <FormCompBox>
+    <Box>
       <FormCompPaper>
         <Logo />
 
-        <StepperComp active={activeStep} />
-
         {activeStep === steps ? (
           <>
-            <Typography variant="h5" gutterBottom>
-              Thank you for your order.
+            <Typography variant="h5" gutterBottom textAlign="center">
+              Thank you.
             </Typography>
-            <Typography variant="subtitle1">Your order number</Typography>
+            <Typography variant="h6" textAlign="center">
+              Welcome {formData.username}
+            </Typography>
           </>
         ) : (
           <>
+            <StepperComp active={activeStep} />
+
             {getStepContent(activeStep)}
 
             {errorMessage && (
@@ -252,6 +258,6 @@ export const FormComp = () => {
           </>
         )}
       </FormCompPaper>
-    </FormCompBox>
+    </Box>
   );
 };
