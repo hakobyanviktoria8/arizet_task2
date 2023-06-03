@@ -5,30 +5,31 @@ import { ButtonComp } from "../common/ButtonComp";
 export const Gender = ({ handleFormChange }) => {
   const [gender, setGender] = useState("");
   const [looking, setLooking] = useState("");
-  const [lookingFor, setLookingFor] = useState("");
+  // const [lookingFor, setLookingFor] = useState("");
 
-  const handleLookingFor = () => {
-    if (gender === "Female" && looking === "Male") {
-      setLookingFor("Female_looking_for_male");
-    } else if (gender === "Female" && looking === "Female") {
-      setLookingFor("Female_looking_for_female");
-    } else if (gender === "Male" && looking === "Female") {
-      setLookingFor("Male_looking_for_female");
-    } else if (gender === "Male" && looking === "Male") {
-      setLookingFor("Male_looking_for_male");
-    }
-  };
+  // const handleLookingFor = () => {
+  //   if (gender === "Female" && looking === "Male") {
+  //     setLookingFor("Female_looking_for_male");
+  //   } else if (gender === "Female" && looking === "Female") {
+  //     setLookingFor("Female_looking_for_female");
+  //   } else if (gender === "Male" && looking === "Female") {
+  //     setLookingFor("Male_looking_for_female");
+  //   } else if (gender === "Male" && looking === "Male") {
+  //     setLookingFor("Male_looking_for_male");
+  //   }
+  // };
 
   useEffect(() => {
     if (gender !== "") {
       handleFormChange("gender", gender);
     }
-    handleLookingFor();
-    if (lookingFor !== "") {
-      handleFormChange("looking_for", lookingFor);
-    }
+    // handleLookingFor();
+    // if (lookingFor !== "") {
+    //   handleFormChange("looking_for", lookingFor);
+    // }
+    handleFormChange("looking_for", looking);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gender, looking, lookingFor]);
+  }, [gender, looking]);
 
   return (
     <Box>

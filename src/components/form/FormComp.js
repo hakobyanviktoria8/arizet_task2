@@ -74,9 +74,22 @@ export const FormComp = () => {
 
   const fetchCompleteData = async () => {
     try {
-      const response = await axios.post(`${apiUrl}/start/${storedUid}`, {
-        Data: formData,
-      });
+      const response = await axios.post(
+        `${apiUrl}/${storedUid}`,
+        {
+          email: formData.email,
+          DOB: formData.DOB,
+          location: formData.location,
+          gender: formData.gender,
+          password: formData.password,
+          looking_for: formData.looking_for,
+        },
+        {
+          params: {
+            site_key: "no01",
+          },
+        }
+      );
       console.log(response);
     } catch (error) {
       console.log(error);

@@ -15,17 +15,54 @@ const RangeBox = styled(Box)(({ theme }) => ({
 }));
 
 export const StepperComp = ({ active }) => {
-  const widthStep = 5 + (active * 100) / 6;
+  const widthStep = 4 + (active * 96) / 5.2;
 
   return (
     <Box marginBottom={5}>
-      <Box>
-        <WcOutlinedIcon />
-        <CakeOutlinedIcon />
-        <FmdGoodOutlinedIcon />
-        <PersonOutlineOutlinedIcon />
-        <LockOutlinedIcon />
-        <EmailOutlinedIcon />
+      <Box
+        sx={{
+          display: "flex",
+          marginBottom: "12px",
+          justifyContent: "space-between",
+          color: "#E5E8EB",
+        }}
+      >
+        <WcOutlinedIcon
+          sx={{
+            color:
+              active === 0 ? "#F76448" : active > 0 ? "#FFDC22" : "#E5E8EB",
+          }}
+        />
+        <CakeOutlinedIcon
+          sx={{
+            color:
+              active === 1 ? "#F76448" : active > 1 ? "#FFDC22" : "#E5E8EB",
+          }}
+        />
+        <FmdGoodOutlinedIcon
+          sx={{
+            color:
+              active === 2 ? "#F76448" : active > 2 ? "#FFDC22" : "#E5E8EB",
+          }}
+        />
+        <PersonOutlineOutlinedIcon
+          sx={{
+            color:
+              active === 3 ? "#F76448" : active > 3 ? "#FFDC22" : "#E5E8EB",
+          }}
+        />
+        <LockOutlinedIcon
+          sx={{
+            color:
+              active === 4 ? "#F76448" : active > 4 ? "#FFDC22" : "#E5E8EB",
+          }}
+        />
+        <EmailOutlinedIcon
+          sx={{
+            color:
+              active === 5 ? "#F76448" : active > 5 ? "#FFDC22" : "#E5E8EB",
+          }}
+        />
       </Box>
 
       <RangeBox>
